@@ -1,8 +1,10 @@
 ---
-title: "Hypothesis Testing"
+title: "GPA Hypothesis Testing"
 author: "Sean Johnson"
 date: "2020-09-25"
 mainfont: Arial
+output:
+  pdf_document: default
 ---
 
 ```{r, include=FALSE}
