@@ -12,17 +12,20 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE, fig.width = 1
 set.seed(76)
 ```
 
-# Background {-}
+# Library
 
 ```{r}
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
 library(infer)
 ```
 
+# Data
+
 Dataset of some grade-point-average (GPA) data for college freshman. The following will read in the data:
 
-```{r}
-sat_gpa <- read_csv("https://rudeboybert.github.io/SDS220/static/PS/sat_gpa.csv")
+```{r message=FALSE}
+sat_gpa <- readr::read_csv("https://rudeboybert.github.io/SDS220/static/PS/sat_gpa.csv")
 ```
 
 Each row or case in this data frame is a student. The data includes:
@@ -43,7 +46,7 @@ sat_gpa %>% group_by(sex) %>%
 
 ```{r}
 ggplot(data = sat_gpa, aes(x = gpa_fy)) +
-  geom_histogram(binwidth = .1, color = "white", fill = "steelblue") +
+  geom_histogram(binwidth = .1, color = "black", fill = "steelblue") +
   facet_wrap(~ sex, ncol = 1) +
   labs(x = "Grade Point Average", y = "Count",
   title = "GPA Comparassion Between Female and Males")
@@ -52,8 +55,7 @@ ggplot(data = sat_gpa, aes(x = gpa_fy)) +
 
 ## Null hypothesis
 
-Null hypothesis that there's no difference in population mean GPA between the genders at the population level. 
-The mathematical notation is the following:
+Null hypothesis is that there's no difference in population mean GPA between the genders at the population level. The mathematical notation is the following:
 
 $$\begin{aligned} H_0:&\mu_{male} = \mu_{female} \\\ \mbox{vs }H_A:& \mu_{male} \neq \mu_{female} \end{aligned}$$
 
@@ -63,7 +65,7 @@ $$\begin{aligned} H_0:&\mu_{male} - \mu_{female} = 0 \\\ \mbox{vs }H_A:& \mu_{ma
 
 ## Testing the hypothesis
 
-### The observed difference 
+### Observed difference 
 
 ```{r}
 obs_diff_gpa_sex <- sat_gpa %>% 
