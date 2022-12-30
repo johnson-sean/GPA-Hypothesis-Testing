@@ -11,7 +11,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE, fig.width = 16/2, fig.height = 9/2)
 ```
 
-# Library
+# Libraries
 
 ```{r}
 library(dplyr)
@@ -113,7 +113,7 @@ Note that zero is the center of this null distribution. The null hypothesis is t
 
 ```{r}
 gpa_diff_under_null %>% 
-  get_pvalue(obs_stat = obs_diff_gpa_sex, direction = "both") 
+  get_pvalue(obs_stat = obs_diff_gpa_sex, direction = "both")
 ```
 
 This result indicates that there is a 0.1% chance (very low) chance that we would see a difference of 0.15 in GPA scores between males and females (or a bigger difference) if in fact there was truly no difference between the sexes in GPA scores in the population.
